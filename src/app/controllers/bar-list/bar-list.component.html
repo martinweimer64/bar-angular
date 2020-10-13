@@ -1,36 +1,28 @@
-<div class="card">
-  <div class="row">
-  </div>
-  <div class="row">
-		<div class="col-md-12">
-			<h3 class="text-center mainTitle">
-				BAR TEST
-			</h3>
-		</div>
-  </div>
-  <div class="card-body p-0 container">
-    <div *ngIf="bars$ | async as barsResponse">
-      <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Score</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let bars of barsResponse">
-            <td>{{ bars.name }}</td>
-            <td>{{ bars.address }}</td>
-            <td>{{ bars.score }}/5</td>
-            <td>
-              <a class="nav-link btn btn-sm btn-outline-secondary" routerLink="/bars/{{bars.cuit}}">View</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
+<h3 class="text-center m-3 mainTitle">
+  BAR TEST
+</h3>
+<div *ngIf="deleted"> Lo borro!</div>
+<div *ngIf="error"> Error</div>
+<div *ngIf="bars$ | async as barsResponse">
+  <table class="table table-striped table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Score</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bar of barsResponse">
+        <td>{{ bar.name }}</td>
+        <td>{{ bar.address }}</td>
+        <td>{{ bar.score }}/5</td>
+        <td>
+          <a class="btn btn-sm btn-secondary m-1" routerLink="/bar/{{bar.cuit}}">View</a>
+          <a class="btn btn-sm btn-secondary" (click)="onDeleteClick(bar)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

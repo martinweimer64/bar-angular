@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" *ngIf="bar$ | async as barResponse">
 	<br><br>
 	<div class="row">
-		<div *ngIf="bar$ | async as barResponse" class="col-md-11">
+		<div  class="col-md-11">
 			<h3>
-				{{barResponse.name}} - <img alt="" src="\assets\images\star.jpg" class="starImage "/>{{barResponse.score}}/5
+				{{barResponse.name }} - <img alt="" src="\assets\images\stars{{barResponse.score}}.png" class="starImage "/>
 			</h3>
 		</div>
 		
@@ -12,39 +12,42 @@
 		</div>
 	</div>
 	<hr class="divLine">
-	<div class="row bar-description">
-		<div class="col-md-8">
+	<div class="row">
+		<div class="col-md-7 bar-description">
 			<dl>
 				<dt>
-					Description lists
+					Cuit
 				</dt>
 				<dd>
-					A description list is perfect for defining terms.
+					{{barResponse.cuit}}
 				</dd>
 				<dt>
-					Euismod
+					Schedule
 				</dt>
 				<dd>
-					Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
-				</dd>
-				<dd>
-					Donec id elit non mi porta gravida at eget metus.
+					{{barResponse.attentionHours}}
 				</dd>
 				<dt>
-					Malesuada porta
+					Address
 				</dt>
 				<dd>
-					Etiam porta sem malesuada magna mollis euismod.
+					{{barResponse.address}}
 				</dd>
 				<dt>
-					Felis euismod semper eget lacinia
+					E-Mail
 				</dt>
 				<dd>
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+					{{barResponse.email || '-'}}
+				</dd>
+				<dt>
+					Has private parking?
+				</dt>
+				<dd>
+					{{barResponse.parking}}
 				</dd>
 			</dl>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<img alt="Bootstrap Image Preview" src="\assets\images\bar01.jpg" class="barImage "/>
 		</div>
 	</div>

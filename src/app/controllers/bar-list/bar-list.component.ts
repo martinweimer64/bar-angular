@@ -13,11 +13,34 @@ import { DataService } from 'src/app/services/data.service';
 export class BarListComponent implements OnInit {
 
   bars$: Observable<Bar[]>;
+  deleted = false;
+  error = false;
   constructor(private route: ActivatedRoute, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.route.url.subscribe(() => {
-      this.bars$ = this.dataService.get<Bar[]>('bars');
+      this.setBarList();
     });
+  }
+
+  onDeleteClick(bar: Bar)
+  {
+    this.deleted = false;
+    if(confirm(`Are you sure to delete ${bar.name} ?`)){
+      const deleted$ = this.dataService.delete<boolean>(`bars/${bar.cuit}`);
+      deleted$.subscribe(response => {
+        if(response){
+          this.setBarList();
+          this.deleted = true;
+        }
+        else{
+          this.error = true;
+        }
+      });
+    }
+  }
+
+  setBarList(){
+    this.bars$ = this.dataService.get<Bar[]>('bars');
   }
 }
