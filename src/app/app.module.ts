@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 
 import { BarListComponent } from './controllers/bar-list/bar-list.component';
 import { BarDetailComponent } from './controllers/bar-detail/bar-detail.component';
+import { BarFormComponent } from './controllers/bar-form/bar-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BarListComponent,
-    BarDetailComponent
+    BarDetailComponent,
+    BarFormComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,18 @@ export class DataService {
     return this.http.get<T>(url).pipe(catchError(this.errorHandler));
   }
 
+  new<T>(urlFragment: string, body: any): Observable<T> {
+    const url = `${this.domain}/${urlFragment}`;
+
+    return this.http.post<T>(url, body).pipe(catchError(this.errorHandler));
+  }
+
+  delete<T>(urlFragment: string): Observable<T> {
+    const url = `${this.domain}/${urlFragment}`;
+
+    return this.http.delete<T>(url).pipe(catchError(this.errorHandler));
+  }
+
 
   errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

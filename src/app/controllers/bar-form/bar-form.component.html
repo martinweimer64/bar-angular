@@ -1,35 +1,100 @@
-<div class="container">
+<div class="container m-5">
+	<h3>New Bar</h3>
 	<div class="row">
 		<div class="col-md-12">
-			<form [formGroup]="formGroup">
-				<div class="form-group">
-					 
-					<label for="exampleInputEmail1">
-						Email address
-					</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" />
+			<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+				<div class="row m-2">
+					<div class="form-group col-md-6">
+						<input id="cuit" class="form-control" name="cuit" formControlName="cuit" required
+							placeholder="Cuit" />
+						<div *ngIf="cuit.invalid && (cuit.dirty || cuit.touched)" class="alert alert-danger">
+							<div *ngIf="cuit.errors.required">
+								Cuit is required.
+							</div>
+							<div *ngIf="cuit.errors.minlength || cuit.errors.maxlength">
+								Cuit must be between 8 to 12 numbers.
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<input id="name" class="form-control" name="name" formControlName="name" required
+							placeholder="Name" />
+						<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+							<div *ngIf="name.errors.required">
+								Name is required.
+							</div>
+							<div *ngIf="name.errors.minlength || name.errors.maxlength">
+								Name must be between 3 to 50 characters.
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					 
-					<label for="exampleInputPassword1">
-						Password
-					</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" />
+				<div class="row m-2">
+					<div class="form-group col-sm-6">
+						<input id="address" class="form-control" name="address" formControlName="address" required
+							placeholder="Address" />
+						<div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+							<div *ngIf="address.errors.required">
+								Address is required.
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<input id="email" type="email" class="form-control" name="email" formControlName="email"
+							required placeholder="Email" />
+
+						<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+							<div *ngIf="email.errors.required">
+								Email is required.
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					 
-					<p class="help-block">
-						Example block-level help text here.
-					</p>
+				<div class="row m-2">
+					<div class="form-group col-sm-6">
+						<input id="attentionHours" class="form-control" name="attentionHours" formControlName="attentionHours" required
+							placeholder="Schedule" />
+						<div *ngIf="attentionHours.invalid && (attentionHours.dirty || attentionHours.touched)"
+							class="alert alert-danger">
+							<div *ngIf="attentionHours.errors.required">
+								Schedule is required.
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<input id="phone" class="form-control" name="phone" formControlName="phone" required
+							placeholder="Phone" />
+						<div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+							<div *ngIf="phone.errors.required">
+								Phone is required.
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" /> Check me out
-					</label>
-				</div> 
-				<button type="submit" class="btn btn-primary">
-					Submit
-				</button>
+				<div class="row m-2">
+					<div class="form-group col-sm-6">
+						<input id="score" type="number" class="form-control" name="score" formControlName="score"
+							required placeholder="Score" min="1" max="5" />
+						<div *ngIf="score.invalid && (score.dirty || score.touched)" class="alert alert-danger">
+							<div *ngIf="schedule.errors.required">
+								Score is required.
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group col-sm-6">
+						<label>
+							<input id="parking" type="checkbox" class="form-control" name="parking"
+								formControlName="parking" /> Has Parking?
+						</label>
+					</div>
+				</div>
+
+
+
+				<button type="button" class="btn  btn-outline-secondary px-4 float-right m-2"
+					routerLink="/bars/">Back</button>
+				<button type="submit" [disabled]="!formGroup.valid" class="btn btn-primary px-4 float-right m-2">Submit</button>
 			</form>
 		</div>
 	</div>
